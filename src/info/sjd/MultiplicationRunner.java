@@ -5,19 +5,17 @@ import java.util.Formatter;
 public class MultiplicationRunner {
 
 	public static void main(String[] args) {
-		System.out.print(getMultiplyByColumn(300, 555));
+		System.out.print(getMultiplyByColumn(300, 56));
 
 	}
 
-	public static String getMultiplyByColumn(int multiplicant, int multiplier) {
+	public static StringBuilder getMultiplyByColumn(int multiplicant, int multiplier) {
 
 		int finalResult = getMultiplicationResult(multiplicant, multiplier);
-		Formatter formattedString = new Formatter();
 		StringBuilder stringBuilderResult = new StringBuilder();
-		String resultString = "";
 
 		stringBuilderResult.append(getIndent(multiplicant, finalResult)).append(multiplicant);
-		stringBuilderResult.append("%n").append(getIndent(multiplier, finalResult)).append(multiplier);
+		stringBuilderResult.append("\n").append(getIndent(multiplier, finalResult)).append(multiplier);
 
 //ACTIONS:		
 //intermediate results to array
@@ -29,7 +27,7 @@ public class MultiplicationRunner {
 
 //add intermediate results into array if multiplier > 10		
 		if (multiplier > 10) {
-			stringBuilderResult.append("%n").append(getIndent(multiplicant, finalResult)).append(getLine(multiplicant));
+			stringBuilderResult.append("\n").append(getIndent(multiplicant, finalResult)).append(getLine(multiplicant));
 
 			for (int i = 0; i < intermediateResults.length; i++) {
 				digitsOfmultiplier[i] = modResult % 10;
@@ -42,20 +40,19 @@ public class MultiplicationRunner {
 
 			if (intermediateResults[i] != 0) {
 
-				stringBuilderResult.append("%n")
+				stringBuilderResult.append("\n")
 						.append(getIndent(intermediateResults[i], finalResult).delete(0, actionCounter))
 						.append(intermediateResults[i]);
 
 			}
 			actionCounter++;
 		}
-		stringBuilderResult.append("%n").append(getLine(finalResult));
-		stringBuilderResult.append("%n").append(finalResult);
+		stringBuilderResult.append("\n").append(getLine(finalResult));
+		stringBuilderResult.append("\n").append(finalResult);
 
-		resultString += formattedString.format(stringBuilderResult.toString());
-		formattedString.close();
 
-		return resultString;
+
+		return stringBuilderResult;
 
 	}
 
